@@ -2,15 +2,14 @@
 
 # Pot (A cute translator)
 
-> A cross-platform translator application ([Telegram Group](https://t.me/pot_app))
+> A translator application for Windows and macOS ([Telegram Group](https://t.me/pot_app))
 
-![License](https://img.shields.io/github/license/pot-app/pot-desktop.svg)
+![License](https://img.shields.io/github/license/douxy1994/pot-desktop.svg)
 ![Tauri](https://img.shields.io/badge/Tauri-1.6.8-blue?logo=tauri)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&logoColor=white)
 ![Rust](https://img.shields.io/badge/-Rust-orange?logo=rust&logoColor=white)
 ![Windows](https://img.shields.io/badge/-Windows-blue?logo=windows&logoColor=white)
 ![MacOS](https://img.shields.io/badge/-macOS-black?&logo=apple&logoColor=white)
-![Linux](https://img.shields.io/badge/-Linux-yellow?logo=linux&logoColor=white)
 
 <br/>
 <hr/>
@@ -35,9 +34,6 @@
 -   [Plugin System](#plugin-system)
 -   [Installation](#installation)
 -   [External Calls](#external-calls)
--   [Wayland Support](#wayland-support)
--   [Internationalization](#internationalizationweblate)
--   [Contributors](#contributors)
 -   [Thanks](#thanks)
 
 <div align="center">
@@ -68,8 +64,8 @@
 -   [x] Export to vocabulary apps ([Supported Services](#supported-services))
 -   [x] External calls ([External Calls](#external-calls))
 -   [x] Plugin system ([Plugin System](#plugin-system))
--   [x] Support Windows, macOS and Linux
--   [x] Support Wayland (Tested on KDE, Gnome and Hyprland)
+-   [x] Support Windows and macOS
+-   [x] Support Dock minimize/restore and standard window controls on macOS Apple Silicon
 -   [x] Multi-language support
 
 <div align="center">
@@ -109,7 +105,6 @@ More Services see [Plugin System](#plugin-system)
 -   [x] System OCR (Offline)
     -   [x] [Windows.Media.OCR](https://learn.microsoft.com/en-us/uwp/api/windows.media.ocr.ocrengine?view=winrt-22621) on Windows
     -   [x] [Apple Vision Framework](https://developer.apple.com/documentation/vision/recognizing_text_in_images) on MacOS
-    -   [x] [Tesseract OCR](https://github.com/tesseract-ocr) on Linux
 -   [x] [Tesseract.js](https://tesseract.projectnaptha.com/) (Offline)
 -   [x] [Baidu](https://ai.baidu.com/tech/ocr/general)
 -   [x] [Tencent](https://cloud.tencent.com/product/ocr-catalog)
@@ -175,15 +170,9 @@ The [Template](https://pot-app.com/en/plugin.html#template) section in the [Plug
 
 ## Windows
 
-### Install via Winget
-
-```powershell
-winget install Pylogmon.pot
-```
-
 ### Install Manually
 
-1. Download the installation package ending in `.exe` from the Latest [Release](https://github.com/pot-app/pot-desktop/releases/latest) page.
+1. Download the installation package ending in `.exe` from the Latest [Release](https://github.com/douxy1994/pot-desktop/releases/latest) page.
 
     - 64-bit machine download `pot_{version}_x64-setup.exe`
     - 32-bit machine download `pot_{version}_x86-setup.exe`
@@ -197,35 +186,15 @@ winget install Pylogmon.pot
 
     Check if WebView2 is uninstalled/disabled, if so, install WebView2 manually or restore it.
 
-    If the enterprise edition system is inconvenient to install or cannot install WebView2, please try to download the fix WebView2 version `pot_{version} at [Release](https://github.com/pot-app/pot-desktop/releases/latest) _{arch}_fix_webview2_runtime-setup.exe`
+    If the enterprise edition system is inconvenient to install or cannot install WebView2, please try to download the fix WebView2 version `pot_{version} at [Release](https://github.com/douxy1994/pot-desktop/releases/latest) _{arch}_fix_webview2_runtime-setup.exe`
 
     If the issue persists, please try starting in Windows 7 compatibility mode.
 
 ## MacOS
 
-### Install via Brew
-
-1. Add our tap:
-
-```bash
-brew tap pot-app/homebrew-tap
-```
-
-2. Install pot:
-
-```bash
-brew install --cask pot
-```
-
-3. Upgrade pot
-
-```bash
-brew upgrade --cask pot
-```
-
 ### Install Manually
 
-1. Download the installation package ending in `.dmg` from the Latest [Release](https://github.com/pot-app/pot-desktop/releases/latest) page. (If you are using M1, please download the installation package named `pot_{version}_aarch64.dmg`, otherwise download the installation package named `pot_{version}_x64.dmg`)
+1. Download the installation package ending in `.dmg` from the Latest [Release](https://github.com/douxy1994/pot-desktop/releases/latest) page. (If you are using M1, please download the installation package named `pot_{version}_aarch64.dmg`, otherwise download the installation package named `pot_{version}_x64.dmg`)
 2. Double click the downloaded file to install it.
 
 ### Troubleshooting
@@ -241,45 +210,6 @@ brew upgrade --cask pot
     ```
 
 -   If you encounter a permission prompt every time you open it, or if you cannot perform a shortcut translation, please go to Settings -> Privacy & Security -> Supporting Features to remove pot, and then re-add pot.
-
-## Linux
-
-### Debian/Ubuntu
-
-We provide `deb` packages for Linux.
-
-Please note that: There are two deb package, `universal` is based on `glibc2.28` and `openssl-1.1`, If the regular deb package can't run on your machine due to dependency problems, please download the `universal` package, Due to its low version dependency, it can run on most systems.
-
-### Arch/Manjaro
-
-> [!WARNING]  
-> In newer version of [Webkit2Gtk](https://archlinux.org/packages/extra/x86_64/webkit2gtk) (2.42.0), Because Nvidia Proprietary drives are not fully implemented DMABUF, it will cause failure to start and crash.<br>
-> Please downgrade or add the `WEBKIT_DISABLE_DMABUF_RENDERER=1` environment variable to `/etc/environment` (or other places where environment variables are set) to turn off the use of DMABUF.
-
-1. View on [AUR](https://aur.archlinux.org/packages?O=0&K=pot-translation)
-
-Use aur helper：
-
-```bash
-yay -S pot-translation # or pot-translation-bin or pot-translation-git
-# or
-paru -S pot-translation # or pot-translation-bin or pot-translation-git
-```
-
-2. If you are using `archlinuxcn`, you can install directly using pacman:
-
-```bash
-sudo pacman -S pot-translation
-```
-
-### Flatpak
-
-> [!WARNING]
-> The tray icon is missing in Flatpak version.
-
-<a href='https://flathub.org/apps/com.pot_app.pot'>
-    <img width='240' alt='Download on Flathub' src='https://flathub.org/api/badge?locale=en'/>
-</a>
 
 <div align="center">
 
@@ -319,7 +249,7 @@ GET "/ocr_translate?screenshot=true" => Translate screenshot
 
 ## OCR without internal screenshot
 
-This allows you to perform OCR/translation without using pot's internal screenshot, so you can use your own screenshot tools. It also solves the problem where pot's internal screenshot doesn't work on some platforms.
+This allows you to perform OCR/translation without using pot's internal screenshot, so you can use your own screenshot tools.
 
 ### Workflow:
 
@@ -329,89 +259,21 @@ This allows you to perform OCR/translation without using pot's internal screensh
 
 > `$CACHE` is the system cache dir, e.g. `C:\Users\{username}\AppData\Local\com.pot-app.desktop\pot_screenshot_cut.png` on Windows.
 
-### Example
-
-OCR using Flameshot on Linux:
-
-```bash
-rm ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && flameshot gui -s -p ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl "127.0.0.1:60828/ocr_recognize?screenshot=false"
-```
-
 ## Existing Usages (Quick selection translation)
 
 ### SnipDo (Windows)
 
 1. Download and install SnipDo in the [Microsoft Store](https://apps.microsoft.com/store/detail/snipdo/9NPZ2TVKJVT7)
-2. Download the SnipDo extension of pot from the Latest [Release](https://github.com/pot-app/pot-desktop/releases/latest) (pot.pbar)
+2. Download the SnipDo extension of pot from the Latest [Release](https://github.com/douxy1994/pot-desktop/releases/latest) (pot.pbar)
 3. Double click the downloaded file to install it.
 4. Selection some text, you can see the pot icon in the upper right corner of the selection, click the icon to translate.
 
 ### PopClip (MacOS)
 
 1. Download and install PopClip in the [App Store](https://apps.apple.com/us/app/popclip/id445189367?mt=12)
-2. Download the PopClip extension of pot from the Latest [Release](https://github.com/pot-app/pot-desktop/releases/latest) (pot.popclipextz)
+2. Download the PopClip extension of pot from the Latest [Release](https://github.com/douxy1994/pot-desktop/releases/latest) (pot.popclipextz)
 3. Double click the downloaded file to install it.
 4. Enable the pot extension in PopClip settings, and then you can translate by selecting text.
-
-### Starry (Linux)
-
-> Starry is still in the development stage, so you can only compile him manually
-
-Github: [ccslykx/Starry](https://github.com/ccslykx/Starry)
-
-<div align="center">
-
-# Wayland Support
-
-</div>
-
-Due to the varying levels of support for Wayland among different distributions, pot itself cannot achieve perfect compatibility. However, here are some solutions to common issues that can be implemented through proper configuration, allowing pot to run flawlessly on Wayland.
-
-## Shortcut key cannot be used
-
-Due to Tauri's lack of support for Wayland, the shortcut key scheme in the pot application cannot be used under Wayland.
-You can set the system shortcut and send a request with `curl` to call pot, see [External Calls](#external-calls) for details
-
-## Screenshot doesn't work
-
-In some pure Wayland desktop environments/window managers (such as Hyprland), the built-in screenshot feature of pot cannot be used. In this case, you can use other screenshot tools instead. For more details, please refer to the section [Not Using Built-in Screenshot](#not-using-built-in-screenshot).
-
-Below is a configuration example for Hyprland using `grim` and `slurp` to achieve screenshot functionality:
-
-```conf
-bind = ALT, X, exec, grim -g "$(slurp)" ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl "127.0.0.1:60828/ocr_recognize?screenshot=false"
-bind = ALT, C, exec, grim -g "$(slurp)" ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl "127.0.0.1:60828/ocr_translate?screenshot=false"
-```
-
-Other desktop environments/window managers also have similar operations.
-
-## The translation window follows the mouse position.
-
-Due to the current inability of pot to obtain accurate mouse coordinates under Wayland, its internal implementation cannot function properly.
-For certain desktop environments/window managers, it is possible to achieve window following mouse position by setting window rules. Here we take Hyprland as an example:
-
-```conf
-windowrulev2 = float, class:(pot), title:(Translator|OCR|PopClip|Screenshot Translate) # Translation window floating
-windowrulev2 = move cursor 0 0, class:(pot), title:(Translator|PopClip|Screenshot Translate) # Translation window follows the mouse position.
-```
-
-<div align="center">
-
-# Internationalization([Weblate](https://hosted.weblate.org/engage/pot-app/))
-
-[![](https://hosted.weblate.org/widget/pot-app/pot-desktop/svg-badge.svg)](https://hosted.weblate.org/engage/pot-app/)
-
-[![](https://hosted.weblate.org/widget/pot-app/pot-desktop/multi-auto.svg)](https://hosted.weblate.org/engage/pot-app/)
-
-</div>
-
-<div align="center">
-
-# Contributors
-
-</div>
-
-<img src="https://github.com/pot-app/.github/blob/master/pot-desktop-contributions.svg?raw=true" width="100%"/>
 
 ## Manual compilation
 
@@ -428,7 +290,7 @@ Rust >= 1.80.0
 1. Clone the repository
 
     ```bash
-    git clone https://github.com/pot-app/pot-desktop.git
+    git clone https://github.com/douxy1994/pot-desktop.git
     ```
 
 2. Install dependencies
@@ -438,19 +300,13 @@ Rust >= 1.80.0
     pnpm install
     ```
 
-3. Install dependencies(Only Linux)
-
-    ```bash
-    sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev patchelf libxdo-dev libxcb1 libxrandr2 libdbus-1-3
-    ```
-
-4. Development (Optional)
+3. Development (Optional)
 
     ```bash
     pnpm tauri dev # Run the app in development mode
     ```
 
-5. Build
+4. Build
     ```bash
     pnpm tauri build # Build into installation package
     ```
@@ -464,7 +320,4 @@ Rust >= 1.80.0
 -   [Bob](https://github.com/ripperhe/Bob) Inspiration
 -   [bob-plugin-openai-translator](https://github.com/yetone/bob-plugin-openai-translator) OpenAI API Reference
 -   [@uiYzzi](https://github.com/uiYzzi) Implementation ideas
--   [@Lichenkass](https://github.com/Lichenkass) Maintaining the Deepin App Store.
 -   [Tauri](https://github.com/tauri-apps/tauri) A user-friendly GUI framework.
-
-<div align="center">

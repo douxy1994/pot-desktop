@@ -3678,12 +3678,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
 
 [[package]]
-name = "minisign-verify"
-version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a05b5d0594e0cb1ad8cee3373018d2b84e25905dc75b2468114cc9a8e86cfc20"
-
-[[package]]
 name = "miniz_oxide"
 version = "0.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4690,7 +4684,7 @@ dependencies = [
  "walkdir",
  "window-shadows",
  "windows 0.58.0",
- "zip 2.2.0",
+ "zip",
 ]
 
 [[package]]
@@ -6387,7 +6381,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1bf327e247698d3f39af8aa99401c9708384290d1f5c544bf5d251d44c2fea22"
 dependencies = [
  "anyhow",
- "base64 0.22.1",
  "bytes",
  "cocoa 0.24.1",
  "dirs-next",
@@ -6404,9 +6397,7 @@ dependencies = [
  "http 0.2.12",
  "ignore",
  "indexmap 1.9.3",
- "infer",
  "log",
- "minisign-verify",
  "nix 0.26.4",
  "notify-rust",
  "objc",
@@ -6436,14 +6427,12 @@ dependencies = [
  "tauri-utils",
  "tempfile",
  "thiserror",
- "time",
  "tokio",
  "url",
  "uuid",
  "webkit2gtk",
  "webview2-com",
  "windows 0.39.0",
- "zip 0.6.6",
 ]
 
 [[package]]
@@ -8454,17 +8443,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.85",
-]
-
-[[package]]
-name = "zip"
-version = "0.6.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "760394e246e4c28189f19d488c058bf16f564016aefac5d32bb1f3b51d5e9261"
-dependencies = [
- "byteorder",
- "crc32fast",
- "crossbeam-utils",
 ]
 
 [[package]]

@@ -28,7 +28,6 @@ body:
           label: Platform
           options:
               - Windows
-              - Linux
               - MacOS
       validations:
           required: true
@@ -38,12 +37,6 @@ body:
           placeholder: 'Eg: Windows 11 Home Edition 22621.1702'
       validations:
           required: true
-    - type: dropdown
-      attributes:
-          label: Window System (Linux Only)
-          options:
-              - X11
-              - Wayland
     - type: input
       attributes:
           label: Software Version
